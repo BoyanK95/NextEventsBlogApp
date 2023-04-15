@@ -1,5 +1,5 @@
 import { getFeaturedEvents } from '../DUMMY_DATA';
-import EventList from './components/events/EventList';
+import EventList from '../components/events/EventList';
 
 function HomePage(params) {
     const feateredEvents = getFeaturedEvents();
