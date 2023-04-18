@@ -7,7 +7,7 @@ function FilteredEventsPage() {
     const filteredData = router.query.slug;
 
     if (!filteredData) {
-        return <p className='centered'>Loading ...</p>;
+        return <p className='center'>Loading ...</p>;
     }
 
     const filteredYear = filteredData[0];
@@ -17,13 +17,13 @@ function FilteredEventsPage() {
     const numMonth = +filteredMonth;
 
     if (isNaN(numYear) || isNaN(numMonth) || numYear > 2030 || numYear < 2020 || numMonth < 1 || numMonth > 12) {
-        return <p>Invalid filter. Please adjust your values!</p>;
+        return <p className='center'>Invalid filter. Please adjust your values!</p>;
     }
 
     const filteredEvents = getFilteredEvents({ year: numYear, month: numMonth });
 
     if (!filteredEvents || filteredEvents.length === 0) {
-        return <p>No events found for the chosen filter!</p>
+        return <p className='center'>No events found for the chosen filter!</p>
     }
 
     return (
