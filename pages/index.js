@@ -15,7 +15,8 @@ export async function getStaticProps() {
     return {
         props: {
             events: feateredEvents
-        }
+        },
+        revalidate: 600
     };
 }
 
