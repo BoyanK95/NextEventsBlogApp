@@ -3,6 +3,7 @@ import EventLogistics from '../../components/event-detail/event-logistics';
 import EventContent from '../../components/event-detail/event-content';
 import ErrorAlert from '../../components/ui/error-alert/error-alert';
 import Button from '../../components/ui/Button';
+import Head from 'next/head';
 import { getAllEvents, getEventById, getFeaturedEvents } from '../../helpers/api-util';
 
 function EventDetailsPage(props) {
@@ -11,23 +12,33 @@ function EventDetailsPage(props) {
     console.log(event.date);
     if (!event) {
         return (
-            <ErrorAlert>
-                <p>No event found!</p>
-                <div className='center'>
-                    <Button link='/events'>Show All Events</Button>
-                </div>
-            </ErrorAlert>
+            <>
+                <Head>
+                    <title>Event Not Found</title>
+                    <meta name='description' content='Event hasnt been found!' />
+                </Head>
+                <ErrorAlert>
+                    <p>No event found!</p>
+                    <div className='center'>
+                        <Button link='/events'>Show All Events</Button>
+                    </div>
+                </ErrorAlert>
+            </>
         );
     }
 
     return (
-        <div>
+        <>
+            <Head>
+                <title>{event.title}</title>
+                <meta name='description' content={event.description} />
+            </Head>
             <EventSummary title={event.title} />
             <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
             <EventContent>
                 <p>{event.description}</p>
             </EventContent>
-        </div>
+        </>
     );
 }
 export async function getStaticProps(context) {
