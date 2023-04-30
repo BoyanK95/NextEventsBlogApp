@@ -9,7 +9,8 @@ import { getAllEvents, getEventById, getFeaturedEvents } from '../../helpers/api
 function EventDetailsPage(props) {
     const event = props.selectedEvent;
     console.log(event);
-    console.log(event.date);
+    const {id } = event
+    console.log(id);
     if (!event) {
         return (
             <>
